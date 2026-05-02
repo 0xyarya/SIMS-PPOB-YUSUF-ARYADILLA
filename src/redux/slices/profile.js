@@ -1,18 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import AuthService from "../../services/authService";
 
-const profile = sessionStorage.getItem("userData");
+const profile = {}
 
 export const profileSlice = createAsyncThunk(
     "profile",
     async (token , thunkAPI) => {
       try {
         const result = await AuthService.profile(token);
-        if (result.data) {
-          return { profile: result.data };
-        } else {
-          return { profile: result };
-        }
+        return {profile : result.data};
       } catch (error) {
         const message =
           (error.response &&

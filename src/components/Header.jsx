@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import profile_user from "../assets/img/default_user.png"
 import bg_saldo from "../assets/img/bg_saldo.png"
 import { getToken } from "../authorization/getToken";
-import { profileSlice } from "../redux/slices/profile";
 import DataRedux from "../utils/data";
 import isLogin from "../authorization/cek-login";
 
@@ -17,12 +16,7 @@ const Headers = () => {
         backgroundImage: `url(${bg_saldo})`,
     }
     
-    const dispatch = useDispatch()
     const userToken = getToken()
-    
-    useEffect(() => {
-        dispatch(profileSlice(userToken))    
-    }, [])
 
     const [isOpenEye, setIsOpenEye] = useState(false)
     
